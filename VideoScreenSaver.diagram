@@ -1,0 +1,777 @@
+<diagram>
+  <option>
+    <shiftx>0</shiftx>
+    <shifty>0</shifty>
+    <endPositionx>0</endPositionx>
+    <endPositiony>0</endPositiony>
+    <firstLayereShift.x>0</firstLayereShift.x>
+    <firstLayereShift.y>0</firstLayereShift.y>
+    <homelayer>0</homelayer>
+    <endlayer>0</endlayer>
+    <diagramreadonly>false</diagramreadonly>
+    <grid>true</grid>
+    <borders>false</borders>
+    <defaultfont type="font">
+      <name>Open Sans</name>
+      <size>10</size>
+      <bold>false</bold>
+      <italic>false</italic>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+    </defaultfont>
+    <coordinates>false</coordinates>
+    <window.position.restore>false</window.position.restore>
+    <window.position.x>0</window.position.x>
+    <window.position.y>0</window.position.y>
+    <window.position.width>100</window.position.width>
+    <window.position.height>100</window.position.height>
+    <window.state>0</window.state>
+  </option>
+  <rectangles>
+    <rectangle>
+      <id>1</id>
+      <fontcolor>Black</fontcolor>
+      <text>random uid</text>
+      <note>import clr
+import sys
+import random
+clr.AddReference('Diagram')
+from Diagram import Position
+
+out = 'UID'
+for i in range(10):
+    out += random.choice('0123456789')
+
+l = DiagramView.currentLayer.id
+selected = DiagramView.selectedNodes[0]
+rec = Diagram.CreateNode(Position(selected.position.x+selected.width+20, selected.position.y), out, l)
+rec.link = out 
+DiagramView.Invalidate();
+print 'uid created'</note>
+      <link>$</link>
+      <layer>0</layer>
+      <x>688</x>
+      <y>480</y>
+      <width>99</width>
+      <height>39</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-8-22 21:12:08</timecreate>
+      <timemodify>2017-8-22 21:12:55</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>12</id>
+      <fontcolor>Black</fontcolor>
+      <text>MainForm</text>
+      <link>UID3244214440</link>
+      <layer>0</layer>
+      <x>1490</x>
+      <y>405</y>
+      <width>90</width>
+      <height>39</height>
+      <color>#AA4BFF</color>
+      <timecreate>2017-8-22 21:17:14</timecreate>
+      <timemodify>2017-8-22 21:17:56</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>18</id>
+      <fontcolor>Black</fontcolor>
+      <text>Atributes</text>
+      <link>UID3130322030</link>
+      <layer>0</layer>
+      <x>1530</x>
+      <y>295</y>
+      <width>83</width>
+      <height>39</height>
+      <color>#CDFF0F</color>
+      <timecreate>2017-8-22 21:38:31</timecreate>
+      <timemodify>2017-8-22 21:38:38</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>4</id>
+      <fontcolor>Black</fontcolor>
+      <text>Program</text>
+      <link>UID1124204102</link>
+      <layer>0</layer>
+      <x>923</x>
+      <y>412</y>
+      <width>80</width>
+      <height>39</height>
+      <color>#AA4BFF</color>
+      <timecreate>2017-8-22 21:13:28</timecreate>
+      <timemodify>2017-8-22 21:16:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>9</id>
+      <fontcolor>Black</fontcolor>
+      <text>Main</text>
+      <link>UID2412304100</link>
+      <layer>0</layer>
+      <x>1054</x>
+      <y>407</y>
+      <width>56</width>
+      <height>39</height>
+      <color>#0F73FF</color>
+      <timecreate>2017-8-22 21:14:36</timecreate>
+      <timemodify>2017-8-22 21:16:46</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>16</id>
+      <fontcolor>Black</fontcolor>
+      <text>Components</text>
+      <link>UID3422034244</link>
+      <layer>0</layer>
+      <x>1603</x>
+      <y>252</y>
+      <width>106</width>
+      <height>39</height>
+      <color>#CDFF0F</color>
+      <timecreate>2017-8-22 21:36:54</timecreate>
+      <timemodify>2017-8-22 21:37:01</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>47</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>1600</x>
+      <y>716</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-8-22 22:13:38</timecreate>
+      <timemodify>2017-8-22 22:13:38</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>14</id>
+      <fontcolor>Black</fontcolor>
+      <text>load-dll</text>
+      <link>UID1213014214</link>
+      <layer>0</layer>
+      <x>1513</x>
+      <y>246</y>
+      <width>72</width>
+      <height>39</height>
+      <color>#CDFF0F</color>
+      <timecreate>2017-8-22 21:36:02</timecreate>
+      <timemodify>2017-8-22 21:36:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>11</id>
+      <fontcolor>Black</fontcolor>
+      <text>ShowScreensaver</text>
+      <link>UID3030132331</link>
+      <layer>0</layer>
+      <x>1305</x>
+      <y>405</y>
+      <width>137</width>
+      <height>39</height>
+      <color>#0F73FF</color>
+      <timecreate>2017-8-22 21:15:12</timecreate>
+      <timemodify>2017-8-22 21:16:50</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>25</id>
+      <fontcolor>Black</fontcolor>
+      <text>events</text>
+      <layer>0</layer>
+      <x>1501</x>
+      <y>667</y>
+      <width>66</width>
+      <height>39</height>
+      <color>#CDCDCD</color>
+      <timecreate>2017-8-22 21:53:13</timecreate>
+      <timemodify>2017-8-22 21:53:13</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>20</id>
+      <fontcolor>Black</fontcolor>
+      <text>Constructors</text>
+      <link>UID4323403030</link>
+      <layer>0</layer>
+      <x>1613</x>
+      <y>406</y>
+      <width>107</width>
+      <height>39</height>
+      <color>#0F73FF</color>
+      <timecreate>2017-8-22 21:39:05</timecreate>
+      <timemodify>2017-8-22 21:39:14</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>26</id>
+      <fontcolor>Black</fontcolor>
+      <text>MainForm_Shown</text>
+      <link>UID3231024101</link>
+      <layer>0</layer>
+      <x>1637</x>
+      <y>706</y>
+      <width>139</width>
+      <height>39</height>
+      <color>#0F73FF</color>
+      <timecreate>2017-8-22 21:53:15</timecreate>
+      <timemodify>2017-8-22 21:54:14</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>27</id>
+      <fontcolor>Black</fontcolor>
+      <text>MainForm_KeyDown</text>
+      <link>UID0413340022</link>
+      <layer>0</layer>
+      <x>1637</x>
+      <y>787</y>
+      <width>156</width>
+      <height>39</height>
+      <color>#0F73FF</color>
+      <timecreate>2017-8-22 21:53:22</timecreate>
+      <timemodify>2017-8-22 21:54:26</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>23</id>
+      <fontcolor>Black</fontcolor>
+      <text>destructor</text>
+      <link>UID4401414233</link>
+      <layer>0</layer>
+      <x>1629</x>
+      <y>467</y>
+      <width>91</width>
+      <height>39</height>
+      <color>#0F73FF</color>
+      <timecreate>2017-8-22 21:39:41</timecreate>
+      <timemodify>2017-8-22 21:39:46</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>28</id>
+      <fontcolor>Black</fontcolor>
+      <text>MainForm_Click</text>
+      <link>UID1231222014</link>
+      <layer>0</layer>
+      <x>1637</x>
+      <y>865</y>
+      <width>125</width>
+      <height>39</height>
+      <color>#0F73FF</color>
+      <timecreate>2017-8-22 21:53:31</timecreate>
+      <timemodify>2017-8-22 21:54:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>48</id>
+      <fontcolor>Black</fontcolor>
+      <text>LoadPlaylist</text>
+      <link>UID0132100220</link>
+      <layer>0</layer>
+      <x>1980</x>
+      <y>473</y>
+      <width>100</width>
+      <height>39</height>
+      <color>#0F73FF</color>
+      <timecreate>2017-8-22 22:14:22</timecreate>
+      <timemodify>2017-8-22 22:14:22</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>49</id>
+      <fontcolor>Black</fontcolor>
+      <text>player</text>
+      <layer>0</layer>
+      <x>1655</x>
+      <y>538</y>
+      <width>64</width>
+      <height>39</height>
+      <color>#CDCDCD</color>
+      <timecreate>2017-8-22 22:14:38</timecreate>
+      <timemodify>2017-8-22 22:14:38</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>50</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>1571</x>
+      <y>545</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-8-22 22:14:57</timecreate>
+      <timemodify>2017-8-22 22:14:57</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>51</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>2013</x>
+      <y>597</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#050505</color>
+      <timecreate>2017-8-22 22:15:58</timecreate>
+      <timemodify>2017-8-22 22:15:58</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>34</id>
+      <fontcolor>Black</fontcolor>
+      <text>InicializePlayer</text>
+      <link>UID3342304432</link>
+      <layer>0</layer>
+      <x>1727</x>
+      <y>358</y>
+      <width>118</width>
+      <height>39</height>
+      <color>#0F73FF</color>
+      <timecreate>2017-8-22 21:55:45</timecreate>
+      <timemodify>2017-8-22 21:55:50</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>52</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>2014</x>
+      <y>647</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#050505</color>
+      <timecreate>2017-8-22 22:16:13</timecreate>
+      <timemodify>2017-8-22 22:16:13</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>36</id>
+      <fontcolor>Black</fontcolor>
+      <text>ShowOnMonitor</text>
+      <link>UID1201044034</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>407</y>
+      <width>129</width>
+      <height>39</height>
+      <color>#0F73FF</color>
+      <timecreate>2017-8-22 21:56:10</timecreate>
+      <timemodify>2017-8-22 21:56:17</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>53</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>853</x>
+      <y>420</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#050505</color>
+      <timecreate>2017-8-22 22:16:24</timecreate>
+      <timemodify>2017-8-22 22:16:24</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>38</id>
+      <fontcolor>Black</fontcolor>
+      <text>LoadPlaylist</text>
+      <link>UID0132100220</link>
+      <layer>0</layer>
+      <x>1819</x>
+      <y>698</y>
+      <width>100</width>
+      <height>39</height>
+      <color>#0F73FF</color>
+      <timecreate>2017-8-22 21:56:37</timecreate>
+      <timemodify>2017-8-22 21:56:44</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>57</id>
+      <fontcolor>Black</fontcolor>
+      <text>setVideoDirectory</text>
+      <link>UID2333332221</link>
+      <layer>0</layer>
+      <x>1106</x>
+      <y>480</y>
+      <width>138</width>
+      <height>39</height>
+      <color>#0F73FF</color>
+      <timecreate>2017-8-22 22:40:06</timecreate>
+      <timemodify>2017-8-22 22:51:29</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>40</id>
+      <fontcolor>Black</fontcolor>
+      <text>VideoPlayer_PlayStateChange</text>
+      <link>UID2023223444</link>
+      <layer>0</layer>
+      <x>1747</x>
+      <y>538</y>
+      <width>213</width>
+      <height>39</height>
+      <color>#0F73FF</color>
+      <timecreate>2017-8-22 21:57:10</timecreate>
+      <timemodify>2017-8-22 21:57:18</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>58</id>
+      <fontcolor>Black</fontcolor>
+      <text>configuration option</text>
+      <layer>0</layer>
+      <x>1174</x>
+      <y>532</y>
+      <width>155</width>
+      <height>39</height>
+      <color>#CDCDCD</color>
+      <timecreate>2017-8-22 22:40:23</timecreate>
+      <timemodify>2017-8-22 22:40:23</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>42</id>
+      <fontcolor>Black</fontcolor>
+      <text>VideoPlayer_PreviewKeyDown</text>
+      <link>UID4402231220</link>
+      <layer>0</layer>
+      <x>1766</x>
+      <y>588</y>
+      <width>217</width>
+      <height>39</height>
+      <color>#0F73FF</color>
+      <timecreate>2017-8-22 21:57:35</timecreate>
+      <timemodify>2017-8-22 21:57:41</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>43</id>
+      <fontcolor>Black</fontcolor>
+      <text>videoPlayer_MouseDownEvent</text>
+      <link>UID0440411321</link>
+      <layer>0</layer>
+      <x>1768</x>
+      <y>639</y>
+      <width>221</width>
+      <height>39</height>
+      <color>#0F73FF</color>
+      <timecreate>2017-8-22 21:57:45</timecreate>
+      <timemodify>2017-8-22 21:58:01</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>59</id>
+      <fontcolor>Black</fontcolor>
+      <text>LoadFromRegistry</text>
+      <link>UID4111422114</link>
+      <layer>0</layer>
+      <x>1105</x>
+      <y>347</y>
+      <width>140</width>
+      <height>39</height>
+      <color>#0F73FF</color>
+      <timecreate>2017-8-22 22:51:03</timecreate>
+      <timemodify>2017-8-22 22:51:36</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>60</id>
+      <fontcolor>Black</fontcolor>
+      <text>UID4111422114</text>
+      <link>UID4111422114</link>
+      <layer>0</layer>
+      <x>807</x>
+      <y>480</y>
+      <width>126</width>
+      <height>39</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-8-22 22:51:09</timecreate>
+      <timemodify>2017-8-22 22:51:09</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>61</id>
+      <fontcolor>Black</fontcolor>
+      <text>UID2333332221</text>
+      <link>UID2333332221</link>
+      <layer>0</layer>
+      <x>807</x>
+      <y>480</y>
+      <width>126</width>
+      <height>39</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-8-22 22:51:18</timecreate>
+      <timemodify>2017-8-22 22:51:18</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>62</id>
+      <fontcolor>Black</fontcolor>
+      <text>UID3222140003</text>
+      <link>UID3222140003</link>
+      <layer>0</layer>
+      <x>807</x>
+      <y>480</y>
+      <width>126</width>
+      <height>39</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-8-22 23:33:40</timecreate>
+      <timemodify>2017-8-22 23:33:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>65</id>
+      <fontcolor>Black</fontcolor>
+      <text>Play</text>
+      <link>UID3222140003</link>
+      <layer>0</layer>
+      <x>1824</x>
+      <y>746</y>
+      <width>50</width>
+      <height>39</height>
+      <color>#0F73FF</color>
+      <timecreate>2017-8-22 23:34:37</timecreate>
+      <timemodify>2017-8-22 23:34:37</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>64</id>
+      <fontcolor>Black</fontcolor>
+      <text>Play</text>
+      <link>UID3222140003</link>
+      <layer>0</layer>
+      <x>1992</x>
+      <y>537</y>
+      <width>50</width>
+      <height>39</height>
+      <color>#0F73FF</color>
+      <timecreate>2017-8-22 23:33:56</timecreate>
+      <timemodify>2017-8-22 23:34:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>66</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>1822</x>
+      <y>799</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#050505</color>
+      <timecreate>2017-8-22 23:35:11</timecreate>
+      <timemodify>2017-8-22 23:35:11</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>67</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>1782</x>
+      <y>877</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#050505</color>
+      <timecreate>2017-8-22 23:35:27</timecreate>
+      <timemodify>2017-8-22 23:35:27</timemodify>
+    </rectangle>
+  </rectangles>
+  <lines>
+    <line>
+      <start>11</start>
+      <end>9</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>14</start>
+      <end>12</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>16</start>
+      <end>12</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>18</start>
+      <end>12</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>20</start>
+      <end>12</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>23</start>
+      <end>20</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>25</start>
+      <end>12</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>27</start>
+      <end>25</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>28</start>
+      <end>25</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>9</start>
+      <end>4</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>12</start>
+      <end>11</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>36</start>
+      <end>20</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>47</start>
+      <end>26</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>47</start>
+      <end>25</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>48</start>
+      <end>40</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>40</start>
+      <end>49</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>50</start>
+      <end>49</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>50</start>
+      <end>12</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>42</start>
+      <end>49</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>43</start>
+      <end>49</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>51</start>
+      <end>42</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>52</start>
+      <end>43</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>53</start>
+      <end>4</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>57</start>
+      <end>9</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>58</start>
+      <end>57</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>59</start>
+      <end>9</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>34</start>
+      <end>20</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>38</start>
+      <end>26</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>64</start>
+      <end>40</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>65</start>
+      <end>26</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>66</start>
+      <end>27</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>67</start>
+      <end>28</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+  </lines>
+</diagram>
