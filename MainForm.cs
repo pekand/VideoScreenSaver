@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.IO;
+using AxWMPLib;
 
 namespace Blue_Screen_saver
 {   
@@ -37,7 +38,7 @@ namespace Blue_Screen_saver
         #region Components
 
         private System.ComponentModel.IContainer components = null;        
-        private AxWMPLib.AxWindowsMediaPlayer videoPlayer;
+        private AxWMPLib.AxWindowsMediaPlayer videoPlayer = null;    
 
         #endregion
             
@@ -47,14 +48,54 @@ namespace Blue_Screen_saver
         private bool IsPreviewMode = false;
         private String VideosPath = @"";
         private Point OriginalLocation = new Point(int.MaxValue, int.MaxValue);
-        #endregion
-        
-        
-        #region Constructors
-        //UID4323403030
-        public MainForm(Rectangle Bounds, int ScreenNo, String videoPath)
+        List<string> playlist =  new List<string>();
+
+    #endregion
+
+
+    #region Constructors
+    //UID4323403030
+    public MainForm(Rectangle Bounds, int ScreenNo, String videoPath)
         {
             #region Windows Form Designer generated code
+                    
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(292, 266);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "MainForm";
+            this.ShowInTaskbar = false;
+            this.Text = "MainForm";
+            this.TopMost = true;
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
+            this.Click += new System.EventHandler(this.MainForm_Click);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
+            this.CreatePlayer();
+            this.ResumeLayout(false);
+
+            #endregion
+
+            this.VideosPath = videoPath;
+            this.Bounds = Bounds;
+            ShowOnMonitor(ScreenNo);
+            Cursor.Hide();
+            
+            InicializePlayer();
+        }
+        
+        
+        //UID4323403031
+        protected void CreatePlayer()
+        {
+            if (this.videoPlayer != null) {
+                this.Controls.Remove(this.videoPlayer);
+            }
             
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.videoPlayer = new AxWMPLib.AxWindowsMediaPlayer();
@@ -72,37 +113,12 @@ namespace Blue_Screen_saver
             this.videoPlayer.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.VideoPlayer_PlayStateChange);
             this.videoPlayer.MouseDownEvent += new AxWMPLib._WMPOCXEvents_MouseDownEventHandler(this.VideoPlayer_MouseDownEvent);
             this.videoPlayer.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.VideoPlayer_PreviewKeyDown);
-            // 
-            // MainForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(292, 266);
-            this.Controls.Add(this.videoPlayer);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "MainForm";
-            this.ShowInTaskbar = false;
-            this.Text = "MainForm";
-            this.TopMost = true;
-            this.Shown += new System.EventHandler(this.MainForm_Shown);
-            this.Click += new System.EventHandler(this.MainForm_Click);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
-            ((System.ComponentModel.ISupportInitialize)(this.videoPlayer)).EndInit();
-            this.ResumeLayout(false);
-
-            #endregion
-
-            this.VideosPath = videoPath;
-            this.Bounds = Bounds;
-            ShowOnMonitor(ScreenNo);
-            Cursor.Hide();
             
-            InicializePlayer();
+            this.Controls.Add(this.videoPlayer);
+            ((System.ComponentModel.ISupportInitialize)(this.videoPlayer)).EndInit();            
         }
         
+
         //UID4401414233
         protected override void Dispose(bool disposing)
         {
@@ -127,7 +143,7 @@ namespace Blue_Screen_saver
 
             this.BackColor = Color.FromArgb(0, 0, 130);
 
-            LoadPlaylist();
+            LoadPlaylistAndPlay();
             Play();
         }
 
@@ -174,12 +190,14 @@ namespace Blue_Screen_saver
             videoPlayer.stretchToFit = true;            
             videoPlayer.uiMode = "none";
             videoPlayer.settings.autoStart = false;
+            videoPlayer.settings.mute = true;
         }
         
         //UID3222140003
         private void Play()
-        {
+        {            
             videoPlayer.Ctlcontrols.play();
+            //videoPlayer.settings.setMode("loop", true);
             videoPlayer.settings.mute = true;
         }
             
@@ -198,10 +216,12 @@ namespace Blue_Screen_saver
             this.Location = p;
         }
 
+
+
         //UID0132100220
-        private void LoadPlaylist() {
+        private void LoadPlaylistAndPlay() {
             Random rng = new Random();
-            var extensions = new string[] { ".avi", ".wmv", ".mpeg", ".mpg", ".m1v", ".mp4", ".m4v", ".mp4v", ".3g2", ".3gp2", ".3gp", ".3gpp", ".mov" };
+            var extensions = new string[] { ".avi", ".wmv", ".mpeg", ".mpg", ".m1v", ".mp4", ".m4v", ".mp4v", ".3g2", ".3gp2", ".3gp", ".3gpp", ".mov", ".mkv" };
             var di = new DirectoryInfo(VideosPath);
             var rgFiles = di.GetFiles("*.*", SearchOption.AllDirectories).Where(f => extensions.Contains(f.Extension.ToLower())).OrderBy(f => rng.Next());
 
@@ -210,15 +230,10 @@ namespace Blue_Screen_saver
                 return;
             }
 
-            var myPlaylist = videoPlayer.playlistCollection.newPlaylist("myPlaylist");
-
-            foreach (var fileName in rgFiles)
-            {
-                var media = videoPlayer.newMedia(fileName.FullName);
-                myPlaylist.appendItem(media);
-            }
-
-            videoPlayer.currentPlaylist = myPlaylist;
+            
+            videoPlayer.URL = (rgFiles.ToArray())[0].FullName;
+            videoPlayer.settings.mute = true;
+            videoPlayer.Ctlcontrols.play();
         }
 
         //UID2023223444
@@ -226,8 +241,11 @@ namespace Blue_Screen_saver
         {
             if (e.newState == 8)//Media finished
             {
-                LoadPlaylist();
-                Play();
+                videoPlayer.Ctlcontrols.stop();
+                videoPlayer.currentPlaylist.clear();
+                this.CreatePlayer();
+                this.InicializePlayer();
+                this.LoadPlaylistAndPlay();
             }
         }
         
@@ -242,7 +260,25 @@ namespace Blue_Screen_saver
         {
             Application.Exit();
         }
-        
+
         #endregion
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // MainForm
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "MainForm";
+            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

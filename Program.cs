@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing;
 
 namespace Blue_Screen_saver
 {
@@ -48,25 +49,8 @@ namespace Blue_Screen_saver
                 SaveVideoPathToRegistry(folderBrowserDialog1.SelectedPath);               
             }
         }
-
-        static void ShowScreensaver(String VideoPath) //UID3030132331
-        {
-            //loops through all the computer's screens (monitors)
-            int screenNo = 0;
-            foreach (Screen screen in Screen.AllScreens)
-            {
-#if DEBUG
-                screenNo = 1;
-#endif
-
-                //creates a form just for that screen and passes it the bounds of that screen
-                MainForm screensaver = new MainForm(screen.Bounds, screenNo, VideoPath);
-                screensaver.Show();
-                screenNo = screenNo + 1;
-            }
-        }
         
-        //UID2333332221
+                //UID2333332221
         static void SaveVideoPathToRegistry(string path)
         {
             Microsoft.Win32.RegistryKey VideoScreenSaverRegistryKey = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("Software\\VideoScreenSaver");
@@ -83,5 +67,30 @@ namespace Blue_Screen_saver
             
             return VideoPath;
         }
+
+        static void ShowScreensaver(String VideoPath) //UID3030132331
+        {
+
+#if DEBUG
+            Rectangle screen = new Rectangle(0,0, 400, 400);
+            //creates a form just for that screen and passes it the bounds of that screen
+            MainForm screensaver = new MainForm(screen, 0, VideoPath);
+            screensaver.Show();
+            return;
+#else
+            //loops through all the computer's screens (monitors)
+            int screenNo = 0;
+            foreach (Screen screen in Screen.AllScreens)
+            {
+                //creates a form just for that screen and passes it the bounds of that screen
+                MainForm screensaver = new MainForm(screen.Bounds, screenNo, VideoPath);
+                screensaver.Show();
+                screenNo = screenNo + 1;
+            }
+#endif
+
+        }
+
+
     }
 }
