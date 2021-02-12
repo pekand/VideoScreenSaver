@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Blue_Screen_saver</RootNamespace>
     <AssemblyName>Video Screen Saver</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>video.ico</ApplicationIcon>
     <FileUpgradeFlags>

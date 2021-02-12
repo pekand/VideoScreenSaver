@@ -54,8 +54,8 @@ namespace Blue_Screen_saver
 
 
     #region Constructors
-    //UID4323403030
-    public MainForm(Rectangle Bounds, int ScreenNo, String videoPath)
+        //UID4323403030
+        public MainForm(Rectangle Bounds, int ScreenNo, String videoPath)
         {
             #region Windows Form Designer generated code
                     
@@ -112,6 +112,7 @@ namespace Blue_Screen_saver
             this.videoPlayer.TabIndex = 0;
             this.videoPlayer.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.VideoPlayer_PlayStateChange);
             this.videoPlayer.MouseDownEvent += new AxWMPLib._WMPOCXEvents_MouseDownEventHandler(this.VideoPlayer_MouseDownEvent);
+            this.videoPlayer.MouseMoveEvent += new AxWMPLib._WMPOCXEvents_MouseMoveEventHandler(this.VideoPlayer_MouseMoveEvent);
             this.videoPlayer.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.VideoPlayer_PreviewKeyDown);
             
             this.Controls.Add(this.videoPlayer);
@@ -156,49 +157,71 @@ namespace Blue_Screen_saver
         {
             if (!IsPreviewMode) //disable exit functions for preview
             {
-                Application.Exit();
+                this.CloseApplicarion();
             }
         }
 
         //UID1231222014
         private void MainForm_Click(object sender, EventArgs e)
         {
-            if (!IsPreviewMode) //disable exit functions for preview
-            {
-                Application.Exit();
-            }
+            this.CloseApplicarion();
         }
 
         
         //UID1234024234
         private void MainForm_MouseMove(object sender, MouseEventArgs e)
         {
-            
+            if (!IsPreviewMode) //disable exit functions for preview
+            {
+                //this.CloseApplicarion();
+            }
         }
-        
+
+        private void MainForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!IsPreviewMode) //disable exit functions for preview
+            {
+                this.CloseApplicarion();
+            }
+        }
+
+        private void MainForm_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (!IsPreviewMode) //disable exit functions for preview
+            {
+                this.CloseApplicarion();
+            }
+        }
+
         #endregion
 
         #region Player
-        
+
         //UID3342304432
         private void InicializePlayer()
         {
-            videoPlayer.Top = 0;
-            videoPlayer.Left = 0;
-            videoPlayer.Width = this.Width;
-            videoPlayer.Height = this.Height;
-            videoPlayer.stretchToFit = true;            
-            videoPlayer.uiMode = "none";
-            videoPlayer.settings.autoStart = false;
-            videoPlayer.settings.mute = true;
+            if (videoPlayer != null)
+            {
+                videoPlayer.Top = 0;
+                videoPlayer.Left = 0;
+                videoPlayer.Width = this.Width;
+                videoPlayer.Height = this.Height;
+                videoPlayer.stretchToFit = true;
+                videoPlayer.uiMode = "none";
+                videoPlayer.settings.autoStart = false;
+                videoPlayer.settings.mute = true;
+            }
         }
         
         //UID3222140003
         private void Play()
-        {            
-            videoPlayer.Ctlcontrols.play();
-            //videoPlayer.settings.setMode("loop", true);
-            videoPlayer.settings.mute = true;
+        {
+            if (videoPlayer != null)
+            {
+                videoPlayer.Ctlcontrols.play();
+                //videoPlayer.settings.setMode("loop", true);
+                videoPlayer.settings.mute = true;
+            }
         }
             
         //UID1201044034
@@ -216,8 +239,6 @@ namespace Blue_Screen_saver
             this.Location = p;
         }
 
-
-
         //UID0132100220
         private void LoadPlaylistAndPlay() {
             Random rng = new Random();
@@ -230,10 +251,13 @@ namespace Blue_Screen_saver
                 return;
             }
 
-            
-            videoPlayer.URL = (rgFiles.ToArray())[0].FullName;
-            videoPlayer.settings.mute = true;
-            videoPlayer.Ctlcontrols.play();
+
+            if (videoPlayer != null)
+            {
+                videoPlayer.URL = (rgFiles.ToArray())[0].FullName;
+                videoPlayer.settings.mute = true;
+                videoPlayer.Ctlcontrols.play();
+            }
         }
 
         //UID2023223444
@@ -252,13 +276,18 @@ namespace Blue_Screen_saver
         //UID4402231220
        private void VideoPlayer_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            Application.Exit();
+            this.CloseApplicarion();
         }
 
         //UID0440411321
         private void VideoPlayer_MouseDownEvent(object sender, AxWMPLib._WMPOCXEvents_MouseDownEvent e)
         {
-            Application.Exit();
+            this.CloseApplicarion();
+        }
+
+        private void VideoPlayer_MouseMoveEvent(object sender, AxWMPLib._WMPOCXEvents_MouseMoveEvent e)
+        {
+            //this.CloseApplicarion();
         }
 
         #endregion
@@ -269,9 +298,14 @@ namespace Blue_Screen_saver
             // 
             // MainForm
             // 
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Name = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseClick);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
             this.ResumeLayout(false);
 
         }
@@ -280,5 +314,18 @@ namespace Blue_Screen_saver
         {
 
         }
+
+        public void CloseApplicarion() {
+
+            if (this.videoPlayer != null) {
+                this.videoPlayer.close();
+            }
+
+            this.Close();
+
+            Application.Exit();
+        }
+
+        
     }
 }

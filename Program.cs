@@ -7,8 +7,11 @@ using System.Drawing;
 
 namespace Blue_Screen_saver
 {
-    static class Program //UID1124204102
+    public static class Program //UID1124204102
     {
+
+        public static MainForm screensaver = null;
+
         [STAThread]
         static void Main(string[] args) //UID2412304100
         {
@@ -74,8 +77,8 @@ namespace Blue_Screen_saver
 #if DEBUG
             Rectangle screen = new Rectangle(0,0, 400, 400);
             //creates a form just for that screen and passes it the bounds of that screen
-            MainForm screensaver = new MainForm(screen, 0, VideoPath);
-            screensaver.Show();
+            Program.screensaver = new MainForm(screen, 0, VideoPath);
+            Program.screensaver.Show();
             return;
 #else
             //loops through all the computer's screens (monitors)
@@ -90,7 +93,5 @@ namespace Blue_Screen_saver
 #endif
 
         }
-
-
     }
 }
