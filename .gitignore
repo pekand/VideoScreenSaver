@@ -1,3 +1,6 @@
 /obj
 /bin
 /.vs
+install-windows/files/
+install-windows/Output
+packages/
