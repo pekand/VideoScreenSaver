@@ -10,7 +10,7 @@ copy "..\bin\Release\Video Screen Saver.exe" .\files\Video-screen-saver.scr
 
 call subscribe "files\Video-screen-saver.scr"
 
-iscc /q create-installation-package-64.iss
+iscc /q "Videe Screen Saver.iss"
 
 call subscribe "output\video-screen-saver-install.exe"
 
